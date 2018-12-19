@@ -4,6 +4,22 @@ const { getAnimes, getEpisodes } = require('./selectors')
 
 const baseURL = 'https://animeflv.net'
 
+const getAllAnimes = async () => {
+  const { data } = await axios.get('/api/animes/list', {
+    baseURL
+  })
+
+  const formatedAnimes = data.map(item => ({
+    index: item[0],
+    label: item[1],
+    title: item[2],
+    id: item[3],
+    type: item[4]
+  }))
+
+  return formatedAnimes
+}
+
 const getAnimeEpisodes = async (animeLink, params) => {
   const { data } = await axios.get(`${animeLink}`, {
     baseURL,
@@ -24,4 +40,4 @@ const getRecentAnimes = async params => {
   return getAnimes(data)
 }
 
-module.exports = { getAnimeEpisodes, getRecentAnimes }
+module.exports = { getAllAnimes, getAnimeEpisodes, getRecentAnimes }
