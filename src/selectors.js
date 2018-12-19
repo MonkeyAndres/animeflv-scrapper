@@ -7,8 +7,8 @@ const cheerio = require('cheerio')
 const parseWithCheerio = data => cheerio.load(data)
 
 // Search a variable in scripts (for episodes and anime details)
-const getVariableValue = ($, variableName) => {
-  const variable = `var ${variableName} =`
+const extractVariableValue = ($, variableName) => {
+  const variable = `${variableName} =`
 
   const episodesScript = $('script').filter(function() {
     return (
@@ -23,14 +23,15 @@ const getVariableValue = ($, variableName) => {
   const endIndex = scriptInnerHTML.indexOf(';', startIndex)
   const valueString = scriptInnerHTML.substring(startIndex, endIndex)
 
-  return JSON.parse(valueString)
+  return valueString
 }
 
 // Anime Episodes
-const getEpisodes = $ => {
-  const episodes = getVariableValue($, 'episodes')
+const extractEpisodes = $ => {
+  const episodes = extractVariableValue($, 'var episodes')
+  const episodesJSON = JSON.parse(episodes)
 
-  const formatedEpisodes = episodes.map(item => ({
+  const formatedEpisodes = episodesJSON.map(item => ({
     index: item[0],
     id: item[1]
   }))
@@ -39,7 +40,7 @@ const getEpisodes = $ => {
 }
 
 // Anime List
-const getAnimes = $ => {
+const extractAnimeList = $ => {
   const animes = $('.Anime')
     .map((i, element) => {
       return {
@@ -54,7 +55,7 @@ const getAnimes = $ => {
   return animes
 }
 
-const getAnimeGenres = $ => {
+const extractAnimeGenres = $ => {
   const genres = []
 
   $('.Nvgnrs a').each((index, element) => genres.push($(element).text()))
@@ -62,15 +63,51 @@ const getAnimeGenres = $ => {
   return genres
 }
 
-const getAnimeDetails = $ => {
+const extractAnimeBasicInfo = $ => {
+  const animeBasicInfo = extractVariableValue($, 'var anime_info')
+  const basicInfoJSON = JSON.parse(animeBasicInfo)
+
   return {
-    rate: $('#votes_prmd').text(),
-    votes: $('#votes_nmbr').text(),
-    genres: getAnimeGenres($),
-    title: $('.Container>.Title').text(),
-    description: $('.Description p').text(),
-    episodes: getEpisodes($)
+    index: basicInfoJSON[0],
+    label: basicInfoJSON[1],
+    title: basicInfoJSON[2]
   }
 }
 
-module.exports = { parseWithCheerio, getAnimes, getEpisodes, getAnimeDetails }
+const extractAnimeDetails = $ => {
+  const animeBasicInfo = extractAnimeBasicInfo($)
+
+  return {
+    rate: $('#votes_prmd').text(),
+    votes: $('#votes_nmbr').text(),
+    genres: extractAnimeGenres($),
+    label: animeBasicInfo.label,
+    description: $('.Description p').text(),
+    episodes: extractEpisodes($),
+    title: animeBasicInfo.title
+  }
+}
+
+const extractVideoSources = $ => {
+  const videoSources = []
+
+  for (let i = 0; i < 5; i++) {
+    const iframe = extractVariableValue($, `video[${i}]`)
+
+    if (iframe !== undefined) {
+      const videoSource = $('iframe', iframe).attr('src')
+      videoSources.push(videoSource)
+    } else {
+      break
+    }
+  }
+
+  return videoSources
+}
+
+module.exports = {
+  parseWithCheerio,
+  extractAnimeDetails,
+  extractAnimeList,
+  extractVideoSources
+}

@@ -1,9 +1,9 @@
 const axios = require('axios')
 const {
   parseWithCheerio,
-  getAnimes,
-  getEpisodes,
-  getAnimeDetails
+  extractAnimeList,
+  extractAnimeDetails,
+  extractVideoSources
 } = require('./selectors')
 
 const baseURL = 'https://animeflv.net'
@@ -24,23 +24,14 @@ const getAllAnimes = async () => {
   return formatedAnimes
 }
 
-const getAnimeEpisodes = async (animeId, animeTitle) => {
-  const { data } = await axios.get(`/anime/${animeId}/${animeTitle}`, {
-    baseURL,
-    transformResponse: [parseWithCheerio]
-  })
-
-  return getEpisodes(data)
-}
-
-const getRecentAnimes = async params => {
+const getAnimes = async params => {
   const { data } = await axios.get(`/browse`, {
     baseURL,
     transformResponse: [parseWithCheerio],
     params
   })
 
-  return getAnimes(data)
+  return extractAnimeList(data)
 }
 
 const getAnimeInfo = async (animeId, animeTitle) => {
@@ -49,12 +40,24 @@ const getAnimeInfo = async (animeId, animeTitle) => {
     transformResponse: [parseWithCheerio]
   })
 
-  return getAnimeDetails(data)
+  return extractAnimeDetails(data)
+}
+
+const getEpisodeVideos = async (episodeId, animeTitle, episodeIndex) => {
+  const { data } = await axios.get(
+    `/ver/${episodeId}/${animeTitle}-${episodeIndex}`,
+    {
+      baseURL,
+      transformResponse: [parseWithCheerio]
+    }
+  )
+
+  return extractVideoSources(data)
 }
 
 module.exports = {
   getAllAnimes,
-  getAnimeEpisodes,
-  getRecentAnimes,
-  getAnimeInfo
+  getAnimes,
+  getAnimeInfo,
+  getEpisodeVideos
 }
