@@ -25,7 +25,13 @@ const getVariableValue = ($, variableName) => {
 // Anime Details
 const getEpisodes = $ => {
   const episodes = getVariableValue($, 'episodes')
-  return episodes
+
+  const formatedEpisodes = episodes.map(item => ({
+    index: item[0],
+    id: item[1]
+  }))
+
+  return formatedEpisodes
 }
 
 // Anime List
