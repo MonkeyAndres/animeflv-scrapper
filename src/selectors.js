@@ -1,6 +1,10 @@
 /**
  * Cheerio selectors.
  * */
+const cheerio = require('cheerio')
+
+// Parse with cherio
+const parseWithCheerio = data => cheerio.load(data)
 
 // Search a variable in scripts (for episodes and anime details)
 const getVariableValue = ($, variableName) => {
@@ -22,7 +26,7 @@ const getVariableValue = ($, variableName) => {
   return JSON.parse(valueString)
 }
 
-// Anime Details
+// Anime Episodes
 const getEpisodes = $ => {
   const episodes = getVariableValue($, 'episodes')
 
@@ -50,4 +54,23 @@ const getAnimes = $ => {
   return animes
 }
 
-module.exports = { getAnimes, getEpisodes }
+const getAnimeGenres = $ => {
+  const genres = []
+
+  $('.Nvgnrs a').each((index, element) => genres.push($(element).text()))
+
+  return genres
+}
+
+const getAnimeDetails = $ => {
+  return {
+    rate: $('#votes_prmd').text(),
+    votes: $('#votes_nmbr').text(),
+    genres: getAnimeGenres($),
+    title: $('.Container>.Title').text(),
+    description: $('.Description p').text(),
+    episodes: getEpisodes($)
+  }
+}
+
+module.exports = { parseWithCheerio, getAnimes, getEpisodes, getAnimeDetails }
