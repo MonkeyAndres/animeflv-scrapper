@@ -36,7 +36,7 @@ const getAnimes = async params => {
   return extractAnimeList(data)
 }
 
-const getAnimeInfo = async (animeId, animeTitle) => {
+const getAnimeInfo = async (animeTitle, animeId) => {
   const { data } = await axios.get(`/anime/${animeId}/${animeTitle}`, {
     baseURL,
     transformResponse: [parseWithCheerio]
@@ -45,7 +45,7 @@ const getAnimeInfo = async (animeId, animeTitle) => {
   return extractAnimeDetails(data)
 }
 
-const getEpisodeVideos = async (episodeId, animeTitle, episodeIndex) => {
+const getEpisodeVideos = async (episodeIndex, animeTitle, episodeId) => {
   const { data } = await axios.get(
     `/ver/${episodeId}/${animeTitle}-${episodeIndex}`,
     {
