@@ -66,13 +66,12 @@ Don't receive any parameter and returns an array of object like the following
 ```json
 [
     { 
-        "index": '1',
-	    "label": 'Bleach',
-    	"title": 'bleach-tv',
-	    "id": '3602',
-    	"type": 'tv' 
-    },
-    ...
+        "index": "1",
+	    "label": "Bleach",
+    	"title": "bleach-tv",
+	    "id": "3602",
+    	"type": "tv" 
+    }
 ]
 ```
 
@@ -83,14 +82,13 @@ Receives an object of filters/parameters. Returns a list of animes as the follow
 ```json
 [
     {
-        "link": '/anime/5495/one-piece-tv',
-    	"animeId": '5495',
-    	"title": 'one-piece-tv',
-    	"image": 'https://animeflv.net/uploads/animes/covers/7.jpg',
-    	"label": 'One Piece',
-    	"type": 'Anime' 
-    },
-    ...
+        "link": "/anime/5495/one-piece-tv",
+    	"animeId": "5495",
+    	"title": "one-piece-tv",
+    	"image": "https://animeflv.net/uploads/animes/covers/7.jpg",
+    	"label": "One Piece",
+    	"type": "Anime"
+    }
 ]
 ```
 
@@ -104,13 +102,13 @@ Receive the anime title (the one without spaces) and the animeId. Returns an obj
 
 ```json
 { 
-	"rate": '4.5',
-	"votes": '7771',
-    "genres": [ ... ],
-	"label": 'One Piece',
-    "description": '...',
-    "episodes": [ { "index": 865, "id": 50900 }, ... ],
-	"title": 'one-piece-tv'
+	"rate": "4.5",
+	"votes": "7771",
+    "genres": [ "..." ],
+	"label": "One Piece",
+    "description": ""...",
+    "episodes": [ { "index": 865, "id": 50900 } ],
+	"title": "one-piece-tv"
 }
 ```
 
@@ -120,8 +118,11 @@ Receive the episode number, the anime title (the one without spaces) and the epi
 
 ```json
 [ 
-    'https://s1.animeflv.net/embed.php?s=natsuki&v=...',
-    ...
+    "https://s1.animeflv.net/embed.php?s=natsuki&v=...",
+    "https://s1.animeflv.net/embed.php?s=natsuki&v=...",
+    "https://s1.animeflv.net/embed.php?s=natsuki&v=...",
+    "https://s1.animeflv.net/embed.php?s=natsuki&v=...",
+    "https://s1.animeflv.net/embed.php?s=natsuki&v=..."
 ]
 ```
 
