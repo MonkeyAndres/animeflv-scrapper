@@ -2,9 +2,9 @@
 
 Fake AnimeFLV API made with Cheerio and Axios.
 
-* [Installation](#installation)
-* [Usage](#usage)
-* [API Documentation](#api-documentation)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
 
 ### Installation
 
@@ -65,13 +65,13 @@ Don't receive any parameter and returns an array of object like the following
 
 ```json
 [
-    { 
-        "index": "1",
-	    "label": "Bleach",
-    	"title": "bleach-tv",
-	    "id": "3602",
-    	"type": "tv" 
-    }
+  {
+    "index": "1",
+    "label": "Bleach",
+    "title": "bleach-tv",
+    "id": "3602",
+    "type": "tv"
+  }
 ]
 ```
 
@@ -81,14 +81,14 @@ Receives an object of filters/parameters. Returns a list of animes as the follow
 
 ```json
 [
-    {
-        "link": "/anime/5495/one-piece-tv",
-    	"animeId": "5495",
-    	"title": "one-piece-tv",
-    	"image": "https://animeflv.net/uploads/animes/covers/7.jpg",
-    	"label": "One Piece",
-    	"type": "Anime"
-    }
+  {
+    "link": "/anime/5495/one-piece-tv",
+    "animeId": "5495",
+    "title": "one-piece-tv",
+    "image": "https://animeflv.net/uploads/animes/covers/7.jpg",
+    "label": "One Piece",
+    "type": "Anime"
+  }
 ]
 ```
 
@@ -101,14 +101,14 @@ Receive two parameters, a string as the query you are looking for and the second
 Receive the anime title (the one without spaces) and the animeId. Returns an object like the following:
 
 ```json
-{ 
-	"rate": "4.5",
-	"votes": "7771",
-    "genres": [ "..." ],
-	"label": "One Piece",
-    "description": "...",
-    "episodes": [ { "index": 865, "id": 50900 } ],
-	"title": "one-piece-tv"
+{
+  "rate": "4.5",
+  "votes": "7771",
+  "genres": ["..."],
+  "label": "One Piece",
+  "description": "...",
+  "episodes": [{ "index": 865, "id": 50900 }],
+  "title": "one-piece-tv"
 }
 ```
 
@@ -117,28 +117,28 @@ Receive the anime title (the one without spaces) and the animeId. Returns an obj
 Receive the episode number, the anime title (the one without spaces) and the episodeId (see `getAnimeInfo()`). Returns an array of 5 video sources.
 
 ```json
-[ 
-    "https://s1.animeflv.net/embed.php?s=natsuki&v=...",
-    "https://s1.animeflv.net/embed.php?s=natsuki&v=...",
-    "https://s1.animeflv.net/embed.php?s=natsuki&v=...",
-    "https://s1.animeflv.net/embed.php?s=natsuki&v=...",
-    "https://s1.animeflv.net/embed.php?s=natsuki&v=..."
+[
+  "https://s1.animeflv.net/embed.php?s=natsuki&v=...",
+  "https://s1.animeflv.net/embed.php?s=natsuki&v=...",
+  "https://s1.animeflv.net/embed.php?s=natsuki&v=...",
+  "https://s1.animeflv.net/embed.php?s=natsuki&v=...",
+  "https://s1.animeflv.net/embed.php?s=natsuki&v=..."
 ]
 ```
 
 ### Filter / Parameters
 
-* genres: see `src/genres.json`
-* year: from 1990 to actual year
-* type: `[tv, movie, special, ova]`
-* status
-  * In Emission: 1
-  * Finished: 2
-  * Soon: 3 
-* order
-  * default
-  * Recently updated: "updated"
-  * Recently added: "added"
-  * Title A-Z: "title"
-  * Rate: "rating"
-* page: By default 1
+- genres: see `src/genres.json`
+- year: from 1990 to actual year
+- type: `[tv, movie, special, ova]`
+- status
+  - In Emission: 1
+  - Finished: 2
+  - Soon: 3
+- order
+  - default
+  - Recently updated: "updated"
+  - Recently added: "added"
+  - Title A-Z: "title"
+  - Rate: "rating"
+- page: By default 1
