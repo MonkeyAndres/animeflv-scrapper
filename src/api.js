@@ -24,6 +24,16 @@ const getAllAnimes = async () => {
   return formatedAnimes
 }
 
+const searchAnime = async query => {
+  const { data } = await axios.get(`/browse`, {
+    baseURL,
+    transformResponse: [parseWithCheerio],
+    params: { q: query }
+  })
+
+  return extractAnimeList(data)
+}
+
 const getAnimes = async params => {
   const { data } = await axios.get(`/browse`, {
     baseURL,
@@ -57,6 +67,7 @@ const getEpisodeVideos = async (episodeId, animeTitle, episodeIndex) => {
 
 module.exports = {
   getAllAnimes,
+  searchAnime,
   getAnimes,
   getAnimeInfo,
   getEpisodeVideos
