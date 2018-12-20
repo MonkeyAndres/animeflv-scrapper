@@ -106,7 +106,7 @@ Receive the anime title (the one without spaces) and the animeId. Returns an obj
 	"votes": "7771",
     "genres": [ "..." ],
 	"label": "One Piece",
-    "description": ""...",
+    "description": "...",
     "episodes": [ { "index": 865, "id": 50900 } ],
 	"title": "one-piece-tv"
 }
