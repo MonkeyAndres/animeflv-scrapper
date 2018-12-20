@@ -3,7 +3,7 @@
  * */
 const cheerio = require('cheerio')
 
-// Parse with cherio
+// Parse with cheerio
 const parseWithCheerio = data => cheerio.load(data)
 
 // Search a variable in scripts (for episodes and anime details)
@@ -26,7 +26,6 @@ const extractVariableValue = ($, variableName) => {
   return valueString
 }
 
-// Anime Episodes
 const extractEpisodes = $ => {
   const episodes = extractVariableValue($, 'var episodes')
   const episodesJSON = JSON.parse(episodes)
@@ -39,17 +38,24 @@ const extractEpisodes = $ => {
   return formatedEpisodes
 }
 
-// Anime List
+const formatAnimeList = $ => (i, element) => {
+  const link = $('a', element).attr('href')
+  const animeId = link.split('/')[2]
+  const title = link.split('/')[3]
+
+  return {
+    link,
+    animeId,
+    title,
+    image: $('.Image img', element).attr('src'),
+    label: $('h3.Title', element).text(),
+    type: $('.Image span.Type', element).text()
+  }
+}
+
 const extractAnimeList = $ => {
   const animes = $('.Anime')
-    .map((i, element) => {
-      return {
-        link: $('a', element).attr('href'),
-        image: $('.Image img', element).attr('src'),
-        title: $('h3.Title', element).text(),
-        type: $('.Image span.Type', element).text()
-      }
-    })
+    .map(formatAnimeList($))
     .get() // Format the return data
 
   return animes
