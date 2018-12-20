@@ -24,7 +24,7 @@ const getAllAnimes = async () => {
   return formatedAnimes
 }
 
-const searchAnime = async (query, page) => getAnimes({ q: query, page })
+const searchAnime = async (query, params) => getAnimes({ q: query, ...params })
 
 const getAnimes = async params => {
   const { data } = await axios.get(`/browse`, {
