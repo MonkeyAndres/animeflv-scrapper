@@ -88,7 +88,9 @@ const extractAnimeDetails = $ => {
     votes: $('#votes_nmbr').text(),
     genres: extractAnimeGenres($),
     label: animeBasicInfo.label,
-    description: $('.Description p').text(),
+    description: $('.Description')
+      .text()
+      .replace(/\r?\n|\r/g, ''),
     episodes: extractEpisodes($),
     title: animeBasicInfo.title
   }
