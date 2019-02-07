@@ -1,4 +1,5 @@
-const axios = require('axios')
+const apiCall = require('./apiCall')
+
 const {
   parseWithCheerio,
   extractAnimeList,
@@ -9,7 +10,7 @@ const {
 const baseURL = 'https://animeflv.net'
 
 const getAllAnimes = async () => {
-  const { data } = await axios.get('/api/animes/list', {
+  const { data } = await apiCall.get('/api/animes/list', {
     baseURL
   })
 
@@ -27,9 +28,9 @@ const getAllAnimes = async () => {
 const searchAnime = async (query, params) => getAnimes({ q: query, ...params })
 
 const getAnimes = async params => {
-  const { data } = await axios.get(`/browse`, {
+  const { data } = await apiCall.get(`/browse`, {
     baseURL,
-    transformResponse: [parseWithCheerio],
+    transformResponse: parseWithCheerio,
     params
   })
 
@@ -37,20 +38,20 @@ const getAnimes = async params => {
 }
 
 const getAnimeInfo = async (animeTitle, animeId) => {
-  const { data } = await axios.get(`/anime/${animeId}/${animeTitle}`, {
+  const { data } = await apiCall.get(`/anime/${animeId}/${animeTitle}`, {
     baseURL,
-    transformResponse: [parseWithCheerio]
+    transformResponse: parseWithCheerio
   })
 
   return extractAnimeDetails(data)
 }
 
 const getEpisodeVideos = async (episodeIndex, animeTitle, episodeId) => {
-  const { data } = await axios.get(
+  const { data } = await apiCall.get(
     `/ver/${episodeId}/${animeTitle}-${episodeIndex}`,
     {
       baseURL,
-      transformResponse: [parseWithCheerio]
+      transformResponse: parseWithCheerio
     }
   )
 

@@ -97,20 +97,22 @@ const extractAnimeDetails = $ => {
 }
 
 const extractVideoSources = $ => {
-  const videoSources = []
+  const videosRAW = extractVariableValue($, 'var videos')
+  const { SUB: videos } = JSON.parse(videosRAW)
+  const iframes = videos.map(item => item.code)
 
-  for (let i = 0; i < 5; i++) {
-    const iframe = extractVariableValue($, `video[${i}]`)
+  const videoSources = iframes.map(item => $('iframe', item).attr('src'))
+  const downloadLink = extractDownloadLink(videos)
 
-    if (iframe !== undefined) {
-      const videoSource = $('iframe', iframe).attr('src')
-      videoSources.push(videoSource)
-    } else {
-      break
-    }
+  return {
+    videos: videoSources,
+    downloads: downloadLink
   }
+}
 
-  return videoSources
+const extractDownloadLink = videos => {
+  const downloadLink = videos.find(item => item.server === 'mega')
+  return downloadLink !== undefined ? downloadLink.url : ''
 }
 
 module.exports = {
