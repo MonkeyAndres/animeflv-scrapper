@@ -5,13 +5,23 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/examples.js"
+    "start": "node src/examples.js",
+    "build": "babel src -d lib"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
-    "cheerio": "^1.0.0-rc.2"
+    "@babel/runtime": "^7.3.1",
+    "cheerio": "^1.0.0-rc.2",
+    "cloudscraper": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "babel-loader": "^8.0.5",
+    "babel-preset-minify": "^0.5.0"
   }
 }
