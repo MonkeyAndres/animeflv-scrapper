@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/examples.js",
-    "build": "babel src -d lib"
+    "build": "babel src -d lib",
+    "prepublish": "npm run build"
   },
   "keywords": [],
   "author": "",
