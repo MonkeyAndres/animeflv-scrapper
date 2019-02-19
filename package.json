@@ -4,7 +4,7 @@
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "jest -i --no-cache",
+    "test": "jest --no-cache --maxWorkers=2",
     "start": "node src/examples.js",
     "build": "babel src -d lib",
     "prepublish": "npm run build"
