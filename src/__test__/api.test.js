@@ -31,9 +31,13 @@ const animeInfoSchema = {
 // tests
 describe('API Test', () => {
   test('getAllAnimes()', async () => {
-    const response = await api.getAllAnimes()
+    try {
+      const response = await api.getAllAnimes()
 
-    expect(response[0]).toMatchObject(allAnimeSchema)
+      expect(response[0]).toMatchObject(allAnimeSchema)
+    } catch (err) {
+      console.log(err)
+    }
   })
 
   test('searchAnime()', async () => {
