@@ -1,5 +1,5 @@
 {
   "presets": ["@babel/preset-env", "minify"],
   "plugins": ["@babel/plugin-transform-runtime"],
-  "ignore": ["src/examples.js", "src/genres.json"]
+  "ignore": ["src/examples.js", "src/genres.json", "src/__test__"]
 }

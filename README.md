@@ -1,5 +1,7 @@
 # AnimeFLV Scrapper
 
+[![Build Status](https://travis-ci.com/MonkeyAndres/animeflv-scrapper.svg?branch=master)](https://travis-ci.com/MonkeyAndres/animeflv-scrapper)
+
 Fake AnimeFLV API made with Cheerio and Axios.
 
 - [Installation](#installation)

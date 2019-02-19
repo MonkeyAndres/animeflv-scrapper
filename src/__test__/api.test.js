@@ -1,6 +1,6 @@
 const api = require('../api')
 
-jest.setTimeout(30000)
+jest.setTimeout(10000)
 
 // schemas
 const allAnimeSchema = {
