@@ -11,4 +11,4 @@ cache:
 install:
   - npm install
 script:
-  - npx jest --ci
+  - npm test

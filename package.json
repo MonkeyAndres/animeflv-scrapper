@@ -4,7 +4,7 @@
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "jest --ci",
+    "test": "jest --verbose --expand",
     "start": "node src/examples.js",
     "build": "babel src -d lib",
     "prepublish": "npm run build"
