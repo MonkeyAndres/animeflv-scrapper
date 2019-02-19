@@ -4,7 +4,7 @@
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest -i --no-cache",
     "start": "node src/examples.js",
     "build": "babel src -d lib",
     "prepublish": "npm run build"
@@ -22,7 +22,6 @@
     "@babel/core": "^7.2.2",
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.3.1",
-    "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.5",
     "babel-preset-minify": "^0.5.0",
     "jest": "^24.1.0"
