@@ -31,30 +31,30 @@ const animeInfoSchema = {
 // tests
 describe('API Test', () => {
   test('getAllAnimes()', async () => {
-    try {
-      const response = await api.getAllAnimes()
+    const response = await api.getAllAnimes()
+    console.log(response)
 
-      expect(response[0]).toMatchObject(allAnimeSchema)
-    } catch (err) {
-      console.log(err)
-    }
+    expect(response[0]).toMatchObject(allAnimeSchema)
   })
 
   test('searchAnime()', async () => {
     const query = 'one piece'
     const response = await api.searchAnime(query)
+    console.log(response)
 
     expect(response[0].label.toLowerCase()).toContain(query)
   })
 
   test('getAnimes()', async () => {
     const response = await api.getAnimes()
+    console.log(response)
 
     expect(response[0]).toMatchObject(animeSchema)
   })
 
   test('getAnimeInfo()', async () => {
     const response = await api.getAnimeInfo('one-piece-tv', 5495)
+    console.log(response)
 
     expect(response).toMatchObject(animeInfoSchema)
     expect(response.genres).toContainEqual(expect.any(String))
@@ -66,6 +66,7 @@ describe('API Test', () => {
 
   test('getEpisodeVideos()', async () => {
     const response = await api.getEpisodeVideos(865, 'one-piece-tv', 50900)
+    console.log(response)
 
     expect(response.videos).toContainEqual(expect.any(String))
     expect(response.downloads).toEqual(expect.any(String))
