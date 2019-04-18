@@ -1,7 +1,7 @@
 const apiCall = require('./apiCall')
 
 const {
-  parseWithCheerio,
+  parseHTML,
   extractAnimeList,
   extractAnimeDetails,
   extractVideoSources
@@ -30,7 +30,7 @@ const searchAnime = async (query, params) => getAnimes({ q: query, ...params })
 const getAnimes = async params => {
   const { data } = await apiCall.get(`/browse`, {
     baseURL,
-    transformResponse: parseWithCheerio,
+    transformResponse: parseHTML,
     params
   })
 
@@ -40,7 +40,7 @@ const getAnimes = async params => {
 const getAnimeInfo = async (animeTitle, animeId) => {
   const { data } = await apiCall.get(`/anime/${animeId}/${animeTitle}`, {
     baseURL,
-    transformResponse: parseWithCheerio
+    transformResponse: parseHTML
   })
 
   return extractAnimeDetails(data)
@@ -51,7 +51,7 @@ const getEpisodeVideos = async (episodeIndex, animeTitle, episodeId) => {
     `/ver/${episodeId}/${animeTitle}-${episodeIndex}`,
     {
       baseURL,
-      transformResponse: parseWithCheerio
+      transformResponse: parseHTML
     }
   )
 

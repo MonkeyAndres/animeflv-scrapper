@@ -4,26 +4,23 @@
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "jest --no-cache --maxWorkers=2",
+    "test": "jest --no-cache",
     "start": "node src/examples.js",
-    "build": "babel src -d lib",
+    "build": "babel src -d lib --minified",
     "prepublish": "npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@babel/runtime": "^7.4.3",
-    "cheerio": "^1.0.0-rc.3",
-    "cloudscraper": "^3.9.1"
+    "cloudscraper": "^3.9.1",
+    "jsdom": "^14.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
     "@babel/plugin-transform-runtime": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
-    "babel-loader": "^8.0.5",
-    "babel-preset-minify": "^0.5.0",
     "jest": "^24.7.1"
   },
   "files": [

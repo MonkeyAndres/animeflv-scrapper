@@ -1,23 +1,29 @@
 /**
- * Cheerio selectors.
+ * DOM selectors.
  * */
-const cheerio = require('cheerio')
+const { JSDOM } = require('jsdom')
 
 // Parse with cheerio
-const parseWithCheerio = data => cheerio.load(data)
+const parseHTML = data => {
+  const { window } = new JSDOM(data, { runScripts: 'dangerously' })
+  return window.document
+}
+
+const toArray = data => [...data]
 
 // Search a variable in scripts (for episodes and anime details)
-const extractVariableValue = ($, variableName) => {
+const extractVariableValue = (dom, variableName) => {
   const variable = `${variableName} =`
 
-  const episodesScript = $('script').filter(function() {
-    return (
-      $(this)
-        .html()
-        .indexOf(variable) > -1
-    )
-  })
-  const scriptInnerHTML = $(episodesScript).html()
+  const scripts = dom.getElementsByTagName('script')
+
+  const episodesScript = toArray(scripts).find(item =>
+    item.innerHTML.includes(variable)
+  )
+
+  if (!episodesScript) return
+
+  const scriptInnerHTML = episodesScript.innerHTML
 
   const startIndex = scriptInnerHTML.indexOf(variable) + variable.length
   const endIndex = scriptInnerHTML.indexOf(';', startIndex)
@@ -26,8 +32,8 @@ const extractVariableValue = ($, variableName) => {
   return valueString
 }
 
-const extractEpisodes = $ => {
-  const episodes = extractVariableValue($, 'var episodes')
+const extractEpisodes = dom => {
+  const episodes = extractVariableValue(dom, 'var episodes') || '[]'
   const episodesJSON = JSON.parse(episodes)
 
   const formatedEpisodes = episodesJSON.map(item => ({
@@ -38,70 +44,63 @@ const extractEpisodes = $ => {
   return formatedEpisodes
 }
 
-const formatAnimeList = $ => (i, element) => {
-  const link = $('a', element).attr('href')
+const formatAnimeList = dom => (element, i) => {
+  const link = element.querySelector('a').href
   const animeId = link.split('/')[2]
   const title = link.split('/')[3]
+
+  const image = dom.querySelectorAll('.Image img')[i].src
+  const label = element.querySelector('.Title').innerHTML
+  const type = element.querySelector('.Image span.Type').innerHTML
 
   return {
     link,
     animeId,
     title,
-    image: $('.Image img', element).attr('src'),
-    label: $('h3.Title', element).text(),
-    type: $('.Image span.Type', element).text()
+    image,
+    label,
+    type
   }
 }
 
-const extractAnimeList = $ => {
-  const animes = $('.Anime')
-    .map(formatAnimeList($))
-    .get() // Format the return data
-
-  return animes
+const extractAnimeList = dom => {
+  const animeElements = dom.querySelectorAll('.Anime')
+  return toArray(animeElements).map(formatAnimeList(dom))
 }
 
-const extractAnimeGenres = $ => {
-  const genres = []
-
-  $('.Nvgnrs a').each((index, element) => genres.push($(element).text()))
-
-  return genres
+const extractAnimeGenres = dom => {
+  const genresElements = dom.querySelectorAll('.Nvgnrs a')
+  return toArray(genresElements).map(element => element.innerHTML)
 }
 
-const extractAnimeBasicInfo = $ => {
-  const animeBasicInfo = extractVariableValue($, 'var anime_info')
-  const basicInfoJSON = JSON.parse(animeBasicInfo)
+const extractAnimeBasicInfo = dom => {
+  const animeBasicInfo = extractVariableValue(dom, 'var anime_info') || '[]'
+  const [index, label, title] = JSON.parse(animeBasicInfo)
 
   return {
-    index: basicInfoJSON[0],
-    label: basicInfoJSON[1],
-    title: basicInfoJSON[2]
+    index,
+    label,
+    title
   }
 }
 
-const extractAnimeDetails = $ => {
-  const animeBasicInfo = extractAnimeBasicInfo($)
+const extractAnimeDetails = dom => {
+  const animeBasicInfo = extractAnimeBasicInfo(dom)
 
   return {
-    rate: $('#votes_prmd').text(),
-    votes: $('#votes_nmbr').text(),
-    genres: extractAnimeGenres($),
-    label: animeBasicInfo.label,
-    description: $('.Description')
-      .text()
-      .replace(/\r?\n|\r/g, ''),
-    episodes: extractEpisodes($),
-    title: animeBasicInfo.title
+    ...animeBasicInfo,
+    rate: dom.querySelector('#votes_prmd').innerHTML,
+    votes: dom.querySelector('#votes_nmbr').innerHTML,
+    genres: extractAnimeGenres(dom),
+    description: dom.querySelector('.Description p').innerHTML.trim(),
+    episodes: extractEpisodes(dom)
   }
 }
 
-const extractVideoSources = $ => {
-  const videosRAW = extractVariableValue($, 'var videos')
+const extractVideoSources = dom => {
+  const videosRAW = extractVariableValue(dom, 'var videos') || '{}'
   const { SUB: videos } = JSON.parse(videosRAW)
-  const iframes = videos.map(item => item.code)
-
-  const videoSources = iframes.map(item => $('iframe', item).attr('src'))
+  const videoSources = videos.map(item => item.code)
   const downloadLink = extractDownloadLink(videos)
 
   return {
@@ -116,7 +115,7 @@ const extractDownloadLink = videos => {
 }
 
 module.exports = {
-  parseWithCheerio,
+  parseHTML,
   extractAnimeDetails,
   extractAnimeList,
   extractVideoSources
