@@ -19,7 +19,7 @@ npm i animeflv-scrapper
  * CODE EXAMPLES
  *  */
 
-const API = require('./api')
+const API = require('animeflv-scrapper')
 
 // Get an array with all the animes in AnimeFLV
 API.getAllAnimes().then(data => {
