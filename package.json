@@ -15,7 +15,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.3",
     "cloudscraper": "^3.9.1",
-    "jsdom": "^14.0.0"
+    "libxmljs-dom": "0.0.17"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",

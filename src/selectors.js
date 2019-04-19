@@ -1,13 +1,10 @@
 /**
  * DOM selectors.
  * */
-const { JSDOM } = require('jsdom')
+const libxmljs = require('libxmljs-dom')
 
 // Parse with cheerio
-const parseHTML = data => {
-  const { window } = new JSDOM(data, { runScripts: 'dangerously' })
-  return window.document
-}
+const parseHTML = data => libxmljs.parseHtml(data)
 
 const toArray = data => [...data]
 
@@ -89,8 +86,8 @@ const extractAnimeDetails = dom => {
 
   return {
     ...animeBasicInfo,
-    rate: dom.querySelector('#votes_prmd').innerHTML,
-    votes: dom.querySelector('#votes_nmbr').innerHTML,
+    // rate: dom.querySelector('#votes_prmd').innerHTML,
+    // votes: dom.querySelector('#votes_nmbr').innerHTML,
     genres: extractAnimeGenres(dom),
     description: dom.querySelector('.Description p').innerHTML.trim(),
     episodes: extractEpisodes(dom)
