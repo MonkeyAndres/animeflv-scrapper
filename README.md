@@ -1,6 +1,6 @@
 # AnimeFLV Scrapper
 
-Fake AnimeFLV API made with Cheerio and Axios.
+Fake AnimeFLV API made with node-html-parser and Axios.
 
 ![Downloads](https://badgen.net/npm/dt/animeflv-scrapper)
 ![Version](https://badgen.net/npm/v/animeflv-scrapper)
