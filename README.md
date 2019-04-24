@@ -1,12 +1,12 @@
 # AnimeFLV Scrapper
 
+Fake AnimeFLV API made with Cheerio and Axios.
+
 ![Downloads](https://badgen.net/npm/dt/animeflv-scrapper)
 ![Version](https://badgen.net/npm/v/animeflv-scrapper)
 ![License](https://badgen.net/npm/license/animeflv-scrapper)
 ![Dependencies](https://badgen.net/david/dep/monkeyandres/animeflv-scrapper)
 ![Size](https://badgen.net/bundlephobia/minzip/animeflv-scrapper)
-
-Fake AnimeFLV API made with Cheerio and Axios.
 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -23,7 +23,7 @@ npm i animeflv-scrapper
 ```javascript
 /**
  * CODE EXAMPLES
- *  */
+ */
 
 const API = require('animeflv-scrapper')
 
