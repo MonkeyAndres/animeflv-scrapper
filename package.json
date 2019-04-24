@@ -14,7 +14,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@babel/runtime": "^7.4.3",
-    "cloudscraper": "^3.9.1",
+    "cloudscraper": "^4.0.0",
     "libxmljs-dom": "0.0.17"
   },
   "devDependencies": {
@@ -31,5 +31,13 @@
     "transformIgnorePatterns": [
       "<rootDir>/src/__test__"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monkeyandres/animeflv-scrapper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/monkeyandres/animeflv-scrapper/issues"
+  },
+  "homepage": "https://github.com/monkeyandres/animeflv-scrapper/#readme"
 }
