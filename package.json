@@ -6,16 +6,19 @@
   "scripts": {
     "test": "jest --no-cache",
     "start": "node src/examples.js",
-    "build": "babel src -d lib --minified",
-    "prepublish": "npm run build"
+    "build": "npm test && babel src -d lib --minified",
+    "prepublishOnly": "npm run build"
   },
-  "keywords": [],
+  "keywords": [
+    "anime",
+    "scrapper"
+  ],
   "author": "monkeyandres",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@babel/runtime": "^7.4.3",
     "cloudscraper": "^4.0.0",
-    "libxmljs-dom": "0.0.17"
+    "node-html-parser": "^1.1.15"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",

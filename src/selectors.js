@@ -1,10 +1,10 @@
 /**
  * DOM selectors.
  * */
-const libxmljs = require('libxmljs-dom')
+const { parse } = require('node-html-parser')
 
 // Parse with cheerio
-const parseHTML = data => libxmljs.parseHtml(data)
+const parseHTML = data => parse(data, { script: true })
 
 const toArray = data => [...data]
 
@@ -12,7 +12,7 @@ const toArray = data => [...data]
 const extractVariableValue = (dom, variableName) => {
   const variable = `${variableName} =`
 
-  const scripts = dom.getElementsByTagName('script')
+  const scripts = dom.querySelectorAll('script')
 
   const episodesScript = toArray(scripts).find(item =>
     item.innerHTML.includes(variable)
@@ -42,11 +42,11 @@ const extractEpisodes = dom => {
 }
 
 const formatAnimeList = dom => (element, i) => {
-  const link = element.querySelector('a').href
+  const link = element.querySelector('a').attributes.href
   const animeId = link.split('/')[2]
   const title = link.split('/')[3]
 
-  const image = dom.querySelectorAll('.Image img')[i].src
+  const image = dom.querySelectorAll('.Image img')[i].attributes.src
   const label = element.querySelector('.Title').innerHTML
   const type = element.querySelector('.Image span.Type').innerHTML
 
