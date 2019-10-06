@@ -16,16 +16,16 @@
   "author": "monkeyandres",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@babel/runtime": "^7.5.5",
-    "cloudscraper": "^4.1.4",
+    "@babel/runtime": "^7.6.2",
+    "cloudscraper": "^4.3.0",
     "node-html-parser": "^1.1.16",
     "request": "2.88.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-transform-runtime": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
     "jest": "^24.9.0"
   },
   "files": [
