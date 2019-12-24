@@ -20,5 +20,5 @@ const apiCall = method => (url, config) => {
 
 module.exports = {
   get: apiCall('get'),
-  post: apiCall('post')
+  post: apiCall('post'),
 }

@@ -15,7 +15,7 @@ const extractVariableValue = (dom, variableName) => {
   const scripts = dom.querySelectorAll('script')
 
   const episodesScript = toArray(scripts).find(item =>
-    item.innerHTML.includes(variable)
+    item.innerHTML.includes(variable),
   )
 
   if (!episodesScript) return
@@ -35,7 +35,7 @@ const extractEpisodes = dom => {
 
   const formatedEpisodes = episodesJSON.map(item => ({
     index: item[0],
-    id: item[1]
+    id: item[1],
   }))
 
   return formatedEpisodes
@@ -56,7 +56,7 @@ const formatAnimeList = dom => (element, i) => {
     title,
     image,
     label,
-    type
+    type,
   }
 }
 
@@ -77,7 +77,7 @@ const extractAnimeBasicInfo = dom => {
   return {
     index,
     label,
-    title
+    title,
   }
 }
 
@@ -90,7 +90,7 @@ const extractAnimeDetails = dom => {
     // votes: dom.querySelector('#votes_nmbr').innerHTML,
     genres: extractAnimeGenres(dom),
     description: dom.querySelector('.Description p').innerHTML.trim(),
-    episodes: extractEpisodes(dom)
+    episodes: extractEpisodes(dom),
   }
 }
 
@@ -102,7 +102,7 @@ const extractVideoSources = dom => {
 
   return {
     videos: videoSources,
-    downloads: downloadLink
+    downloads: downloadLink,
   }
 }
 
@@ -115,5 +115,5 @@ module.exports = {
   parseHTML,
   extractAnimeDetails,
   extractAnimeList,
-  extractVideoSources
+  extractVideoSources,
 }

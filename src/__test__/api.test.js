@@ -6,7 +6,7 @@ const allAnimeSchema = {
   label: expect.any(String),
   id: expect.any(String),
   title: expect.any(String),
-  type: expect.any(String)
+  type: expect.any(String),
 }
 
 const animeSchema = {
@@ -15,7 +15,7 @@ const animeSchema = {
   title: expect.any(String),
   image: expect.any(String),
   label: expect.any(String),
-  type: expect.any(String)
+  type: expect.any(String),
 }
 
 const animeInfoSchema = {
@@ -23,7 +23,7 @@ const animeInfoSchema = {
   // votes: expect.any(String),
   label: expect.any(String),
   description: expect.any(String),
-  title: expect.any(String)
+  title: expect.any(String),
 }
 
 // tests
@@ -54,7 +54,7 @@ describe('API Test', () => {
     expect(response.genres).toContainEqual(expect.any(String))
     expect(response.episodes).toContainEqual({
       index: expect.any(Number),
-      id: expect.any(Number)
+      id: expect.any(Number),
     })
   })
 

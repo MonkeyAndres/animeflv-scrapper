@@ -4,14 +4,14 @@ const {
   parseHTML,
   extractAnimeList,
   extractAnimeDetails,
-  extractVideoSources
+  extractVideoSources,
 } = require('./selectors')
 
 const baseURL = 'https://animeflv.net'
 
 const getAllAnimes = async () => {
   const { data } = await apiCall.get('/api/animes/list', {
-    baseURL
+    baseURL,
   })
 
   const formatedAnimes = data.map(item => ({
@@ -19,7 +19,7 @@ const getAllAnimes = async () => {
     label: item[1],
     title: item[2],
     id: item[3],
-    type: item[4]
+    type: item[4],
   }))
 
   return formatedAnimes
@@ -31,7 +31,7 @@ const getAnimes = async params => {
   const { data } = await apiCall.get(`/browse`, {
     baseURL,
     transformResponse: parseHTML,
-    params
+    params,
   })
 
   return extractAnimeList(data)
@@ -40,7 +40,7 @@ const getAnimes = async params => {
 const getAnimeInfo = async (animeTitle, animeId) => {
   const { data } = await apiCall.get(`/anime/${animeId}/${animeTitle}`, {
     baseURL,
-    transformResponse: parseHTML
+    transformResponse: parseHTML,
   })
 
   return extractAnimeDetails(data)
@@ -51,8 +51,8 @@ const getEpisodeVideos = async (episodeIndex, animeTitle, episodeId) => {
     `/ver/${episodeId}/${animeTitle}-${episodeIndex}`,
     {
       baseURL,
-      transformResponse: parseHTML
-    }
+      transformResponse: parseHTML,
+    },
   )
 
   return extractVideoSources(data)
@@ -63,5 +63,5 @@ module.exports = {
   searchAnime,
   getAnimes,
   getAnimeInfo,
-  getEpisodeVideos
+  getEpisodeVideos,
 }

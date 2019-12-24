@@ -21,7 +21,7 @@ const params = {
   type: 'tv',
   status: 2,
   order: 'updated',
-  page: 1
+  page: 1,
 }
 
 // Get a list of 20 animes according to the passed parameters
