@@ -6,8 +6,12 @@
   "scripts": {
     "test": "jest --no-cache",
     "start": "node src/examples.js",
-    "build": "npm test && babel src -d lib --minified",
-    "prepublishOnly": "npm run build"
+    "build": "babel src -d lib --minified",
+    "format": "prettier --write \"src/**/*.js\"",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "anime",
@@ -26,7 +30,8 @@
     "@babel/core": "^7.7.7",
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.7.7",
-    "jest": "^24.9.0"
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1"
   },
   "files": [
     "lib"
