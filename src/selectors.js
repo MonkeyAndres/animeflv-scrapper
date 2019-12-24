@@ -91,8 +91,8 @@ const extractAnimeDetails = dom => {
 
   return {
     ...animeBasicInfo,
-    // rate: dom.querySelector('#votes_prmd').innerHTML,
-    // votes: dom.querySelector('#votes_nmbr').innerHTML,
+    rate: dom.querySelector('#votes_prmd').innerHTML,
+    votes: dom.querySelector('#votes_nmbr').innerHTML,
     genres: extractAnimeGenres(dom),
     description: dom.querySelector('.Description p').innerHTML.trim(),
     episodes: extractEpisodes(dom),

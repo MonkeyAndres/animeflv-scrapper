@@ -19,8 +19,8 @@ const animeSchema = {
 }
 
 const animeInfoSchema = {
-  // rate: expect.any(String),
-  // votes: expect.any(String),
+  rate: expect.any(String),
+  votes: expect.any(String),
   label: expect.any(String),
   description: expect.any(String),
   title: expect.any(String),
