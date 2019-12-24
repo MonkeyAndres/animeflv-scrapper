@@ -46,7 +46,12 @@ const formatAnimeList = dom => (element, i) => {
   const animeId = link.split('/')[2]
   const title = link.split('/')[3]
 
-  const image = dom.querySelectorAll('.Image img')[i].attributes.src
+  // Add fallback if src attr is not found
+  const imageElement = dom.querySelectorAll('.Image img')[i]
+  const image =
+    imageElement.attributes.src ||
+    `https://animeflv.net${imageElement.attributes['data-cfsrc']}`
+
   const label = element.querySelector('.Title').innerHTML
   const type = element.querySelector('.Image span.Type').innerHTML
 
