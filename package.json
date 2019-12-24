@@ -1,7 +1,7 @@
 {
   "name": "animeflv-scrapper",
   "version": "0.2.7",
-  "description": "Fake AnimeFLV API made with node-html-parser and Axios.",
+  "description": "Fake AnimeFLV API made with node-html-parser and cloudscraper.",
   "main": "./lib/index.js",
   "scripts": {
     "test": "jest --no-cache",
@@ -16,16 +16,16 @@
   "author": "monkeyandres",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@babel/runtime": "^7.6.2",
-    "cloudscraper": "^4.3.0",
+    "@babel/runtime": "^7.7.7",
+    "cloudscraper": "^4.5.0",
     "node-html-parser": "^1.1.16",
     "request": "2.88.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.2",
-    "@babel/core": "^7.6.2",
-    "@babel/plugin-transform-runtime": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.7",
     "jest": "^24.9.0"
   },
   "files": [
