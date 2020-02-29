@@ -5,6 +5,7 @@ const {
   extractAnimeList,
   extractAnimeDetails,
   extractVideoSources,
+  extractLatestEpisodes,
 } = require('./selectors')
 
 const baseURL = 'https://animeflv.net'
@@ -58,10 +59,20 @@ const getEpisodeVideos = async (episodeIndex, animeTitle, episodeId) => {
   return extractVideoSources(data)
 }
 
+const getLatestEpisodes = async () => {
+  const { data } = await apiCall.get('', {
+    baseURL,
+    transformResponse: parseHTML,
+  })
+
+  return extractLatestEpisodes(data)
+}
+
 module.exports = {
   getAllAnimes,
   searchAnime,
   getAnimes,
   getAnimeInfo,
   getEpisodeVideos,
+  getLatestEpisodes,
 }

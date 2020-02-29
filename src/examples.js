@@ -1,6 +1,6 @@
 /**
  * CODE EXAMPLES
- *  */
+ **/
 
 const API = require('./api')
 
@@ -38,3 +38,6 @@ API.getAnimeInfo('one-piece-tv', 5495).then(data => {
 API.getEpisodeVideos(865, 'one-piece-tv', 50900).then(data => {
   console.log(data)
 })
+
+// Get a list of the latest 20 anime episodes
+API.getLatestEpisodes().then(data => console.log(data))

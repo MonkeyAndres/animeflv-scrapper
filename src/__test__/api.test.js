@@ -26,6 +26,13 @@ const animeInfoSchema = {
   title: expect.any(String),
 }
 
+const latestEpisodesSchema = {
+  animeId: expect.any(String),
+  title: expect.any(String),
+  label: expect.any(String),
+  episode: expect.any(String),
+}
+
 // tests
 describe('API Test', () => {
   test('getAllAnimes()', async () => {
@@ -63,5 +70,11 @@ describe('API Test', () => {
 
     expect(response.videos).toContainEqual(expect.any(String))
     expect(response.downloads).toEqual(expect.any(String))
+  })
+
+  test('getLatestEpisodes()', async () => {
+    const response = await api.getLatestEpisodes()
+
+    expect(response).toContainEqual(latestEpisodesSchema)
   })
 })

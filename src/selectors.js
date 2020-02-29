@@ -116,9 +116,28 @@ const extractDownloadLink = videos => {
   return downloadLink !== undefined ? downloadLink.url : ''
 }
 
+const extractLatestEpisodes = dom => {
+  const latestEpisodes = dom.querySelectorAll('.ListEpisodios li')
+
+  return latestEpisodes.map(element => {
+    const [, , animeId, title] = element
+      .querySelector('a')
+      .getAttribute('href')
+      .split('/')
+
+    return {
+      animeId,
+      title,
+      label: element.querySelector('.Title').text,
+      episode: element.querySelector('.Capi').text,
+    }
+  })
+}
+
 module.exports = {
   parseHTML,
   extractAnimeDetails,
   extractAnimeList,
   extractVideoSources,
+  extractLatestEpisodes,
 }

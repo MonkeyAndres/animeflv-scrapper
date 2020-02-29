@@ -132,6 +132,21 @@ Receive the episode number, the anime title (the one without spaces) and the epi
 ]
 ```
 
+### `getLatestEpisodes()`
+
+Get a list of the latest 20 anime episodes.
+
+```json
+[
+  {
+    "animeId": "54030",
+    "title": "boku-no-hero-academia-4th-season-20",
+    "label": "Boku no Hero Academia 4th Season",
+    "episode": "Episodio 20"
+  }
+]
+```
+
 ### Filter / Parameters
 
 - genres: see `src/genres.json`
