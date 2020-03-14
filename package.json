@@ -20,15 +20,15 @@
   "author": "monkeyandres",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@babel/runtime": "^7.8.4",
+    "@babel/runtime": "^7.8.7",
     "cloudscraper": "^4.6.0",
-    "node-html-parser": "^1.2.7"
+    "node-html-parser": "^1.2.12"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.4",
+    "@babel/core": "^7.8.7",
     "@babel/plugin-transform-runtime": "^7.8.3",
-    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-env": "^7.8.7",
     "jest": "^25.1.0",
     "prettier": "^1.19.1"
   },
