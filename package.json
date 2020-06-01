@@ -1,6 +1,6 @@
 {
   "name": "animeflv-scrapper",
-  "version": "0.2.12",
+  "version": "0.3.0",
   "description": "Fake AnimeFLV API made with node-html-parser and humanoid-js.",
   "main": "./lib/index.js",
   "scripts": {
