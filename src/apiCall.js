@@ -1,4 +1,6 @@
-const cloudscraper = require('cloudscraper')
+const Humanoid = require('humanoid-js')
+
+const humanoid = new Humanoid()
 
 const apiCall = method => (url, config) => {
   const { baseURL, transformResponse = JSON.parse, params = {} } = config
@@ -11,10 +13,13 @@ const apiCall = method => (url, config) => {
   const finalURL = `${baseURL}${url}?${formatedParams.join('&')}`
 
   return new Promise((resolve, reject) => {
-    cloudscraper[method](finalURL, (err, response, body) => {
-      if (err) return reject({ err })
-      if (body) return resolve({ data: transformResponse(body) })
-    })
+    humanoid[method](finalURL)
+      .then(res => {
+        resolve({ data: transformResponse(res.body) })
+      })
+      .catch(err => {
+        reject({ err })
+      })
   })
 }
 
