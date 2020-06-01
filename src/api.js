@@ -38,8 +38,8 @@ const getAnimes = async params => {
   return extractAnimeList(data)
 }
 
-const getAnimeInfo = async (animeTitle, animeId) => {
-  const { data } = await apiCall.get(`/anime/${animeId}/${animeTitle}`, {
+const getAnimeInfo = async animeTitle => {
+  const { data } = await apiCall.get(`/anime/${animeTitle}`, {
     baseURL,
     transformResponse: parseHTML,
   })
@@ -47,14 +47,11 @@ const getAnimeInfo = async (animeTitle, animeId) => {
   return extractAnimeDetails(data)
 }
 
-const getEpisodeVideos = async (episodeIndex, animeTitle, episodeId) => {
-  const { data } = await apiCall.get(
-    `/ver/${episodeId}/${animeTitle}-${episodeIndex}`,
-    {
-      baseURL,
-      transformResponse: parseHTML,
-    },
-  )
+const getEpisodeVideos = async (episodeIndex, animeTitle) => {
+  const { data } = await apiCall.get(`/ver/${animeTitle}-${episodeIndex}`, {
+    baseURL,
+    transformResponse: parseHTML,
+  })
 
   return extractVideoSources(data)
 }

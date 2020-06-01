@@ -30,12 +30,12 @@ API.getAnimes(params).then(data => {
 })
 
 // Get info about an specific anime (see docs for more)
-API.getAnimeInfo('one-piece-tv', 5495).then(data => {
+API.getAnimeInfo('one-piece-tv').then(data => {
   console.log(data)
 })
 
 // Get maximum 5 video links of each episode
-API.getEpisodeVideos(865, 'one-piece-tv', 50900).then(data => {
+API.getEpisodeVideos(865, 'one-piece-tv').then(data => {
   console.log(data)
 })
 

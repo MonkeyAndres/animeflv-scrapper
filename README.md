@@ -1,6 +1,6 @@
 # AnimeFLV Scrapper
 
-Fake AnimeFLV API made with node-html-parser and cloudscraper.
+Fake AnimeFLV API made with node-html-parser and humanoid-js.
 
 ![Downloads](https://badgen.net/npm/dt/animeflv-scrapper)
 ![Version](https://badgen.net/npm/v/animeflv-scrapper)
@@ -25,42 +25,42 @@ npm i animeflv-scrapper
  * CODE EXAMPLES
  */
 
-const API = require("animeflv-scrapper");
+const API = require('animeflv-scrapper')
 
 // Get an array with all the animes in AnimeFLV
 API.getAllAnimes().then(data => {
-  console.log(data);
-});
+  console.log(data)
+})
 
 // Search for animes that contains 'one piece' on it's name
-API.searchAnime("one piece").then(data => {
-  console.log(data);
-});
+API.searchAnime('one piece').then(data => {
+  console.log(data)
+})
 
 // Parameters for a getAnimes search
 const params = {
-  genre: "accion",
+  genre: 'accion',
   year: 2018,
-  type: "tv",
+  type: 'tv',
   status: 2,
-  order: "updated",
-  page: 1
-};
+  order: 'updated',
+  page: 1,
+}
 
 // Get a list of 20 animes according to the passed parameters
 API.getAnimes(params).then(data => {
-  console.log(data);
-});
+  console.log(data)
+})
 
 // Get info about an specific anime (see docs for more)
-API.getAnimeInfo("one-piece-tv", 5495).then(data => {
-  console.log(data);
-});
+API.getAnimeInfo('one-piece-tv').then(data => {
+  console.log(data)
+})
 
 // Get maximum 5 video links of each episode
-API.getEpisodeVideos(865, "one-piece-tv", 50900).then(data => {
-  console.log(data);
-});
+API.getEpisodeVideos(865, 'one-piece-tv').then(data => {
+  console.log(data)
+})
 ```
 
 ### API Documentation
@@ -88,8 +88,7 @@ Receives an object of filters/parameters. Returns a list of animes as the follow
 ```json
 [
   {
-    "link": "/anime/5495/one-piece-tv",
-    "animeId": "5495",
+    "link": "/anime/one-piece-tv",
     "title": "one-piece-tv",
     "image": "https://animeflv.net/uploads/animes/covers/7.jpg",
     "label": "One Piece",
@@ -102,9 +101,9 @@ Receives an object of filters/parameters. Returns a list of animes as the follow
 
 Receive two parameters, a string as the query you are looking for and the second an object of filters/parameters. Returns a list of animes as `getAnimes(params)`
 
-### `getAnimeInfo(animeTitle, animeId)`
+### `getAnimeInfo(animeTitle)`
 
-Receive the anime title (the one without spaces) and the animeId. Returns an object like the following:
+Receive the anime title (the one without spaces). Returns an object like the following:
 
 ```json
 {
@@ -118,9 +117,9 @@ Receive the anime title (the one without spaces) and the animeId. Returns an obj
 }
 ```
 
-### `getEpisodeVideos(episodeIndex, animeTitle, episodeId)`
+### `getEpisodeVideos(episodeIndex, animeTitle)`
 
-Receive the episode number, the anime title (the one without spaces) and the episodeId (see `getAnimeInfo()`). Returns an array of 5 video sources.
+Receive the episode number and the anime title (the one without spaces). Returns an array of 5 video sources.
 
 ```json
 [
@@ -139,7 +138,6 @@ Get a list of the latest 20 anime episodes.
 ```json
 [
   {
-    "animeId": "54030",
     "title": "boku-no-hero-academia-4th-season-20",
     "label": "Boku no Hero Academia 4th Season",
     "episode": "Episodio 20"
