@@ -11,7 +11,6 @@ const allAnimeSchema = {
 
 const animeSchema = {
   link: expect.any(String),
-  animeId: expect.any(String),
   title: expect.any(String),
   image: expect.any(String),
   label: expect.any(String),
@@ -27,7 +26,6 @@ const animeInfoSchema = {
 }
 
 const latestEpisodesSchema = {
-  animeId: expect.any(String),
   title: expect.any(String),
   label: expect.any(String),
   episode: expect.any(String),
@@ -55,7 +53,7 @@ describe('API Test', () => {
   })
 
   test('getAnimeInfo()', async () => {
-    const response = await api.getAnimeInfo('one-piece-tv', 5495)
+    const response = await api.getAnimeInfo('one-piece-tv')
 
     expect(response).toMatchObject(animeInfoSchema)
     expect(response.genres).toContainEqual(expect.any(String))
@@ -66,7 +64,7 @@ describe('API Test', () => {
   })
 
   test('getEpisodeVideos()', async () => {
-    const response = await api.getEpisodeVideos(865, 'one-piece-tv', 50900)
+    const response = await api.getEpisodeVideos(865, 'one-piece-tv')
 
     expect(response.videos).toContainEqual(expect.any(String))
     expect(response.downloads).toEqual(expect.any(String))

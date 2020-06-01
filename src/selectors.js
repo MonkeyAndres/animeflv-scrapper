@@ -43,8 +43,7 @@ const extractEpisodes = dom => {
 
 const formatAnimeList = dom => (element, i) => {
   const link = element.querySelector('a').attributes.href
-  const animeId = link.split('/')[2]
-  const title = link.split('/')[3]
+  const title = link.split('/')[2]
 
   // Add fallback if src attr is not found
   const imageElement = dom.querySelectorAll('.Image img')[i]
@@ -57,7 +56,6 @@ const formatAnimeList = dom => (element, i) => {
 
   return {
     link,
-    animeId,
     title,
     image,
     label,
@@ -120,13 +118,12 @@ const extractLatestEpisodes = dom => {
   const latestEpisodes = dom.querySelectorAll('.ListEpisodios li')
 
   return latestEpisodes.map(element => {
-    const [, , animeId, title] = element
+    const [, , title] = element
       .querySelector('a')
       .getAttribute('href')
       .split('/')
 
     return {
-      animeId,
       title,
       label: element.querySelector('.Title').text,
       episode: element.querySelector('.Capi').text,
