@@ -117,6 +117,8 @@ const extractDownloadLink = videos => {
 const extractLatestEpisodes = dom => {
   const latestEpisodes = dom.querySelectorAll('.ListEpisodios li')
 
+
+
   return latestEpisodes.map(element => {
     const [, , title] = element
       .querySelector('a')
@@ -127,6 +129,7 @@ const extractLatestEpisodes = dom => {
       title,
       label: element.querySelector('.Title').text,
       episode: element.querySelector('.Capi').text,
+      image: 'https://animeflv.net'+element.querySelector('img').getAttribute('src')
     }
   })
 }
