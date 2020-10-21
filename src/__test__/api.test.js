@@ -29,6 +29,7 @@ const latestEpisodesSchema = {
   title: expect.any(String),
   label: expect.any(String),
   episode: expect.any(String),
+  image: expect.any(String),
 }
 
 // tests
