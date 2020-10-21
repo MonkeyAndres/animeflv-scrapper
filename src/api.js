@@ -66,6 +66,7 @@ const getLatestEpisodes = async () => {
 }
 
 module.exports = {
+  baseURL,
   getAllAnimes,
   searchAnime,
   getAnimes,
