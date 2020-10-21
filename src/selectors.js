@@ -2,6 +2,7 @@
  * DOM selectors.
  * */
 const { parse } = require('node-html-parser')
+const { baseURL } = require('./api')
 
 // Parse with cheerio
 const parseHTML = data => parse(data, { script: true })
@@ -123,10 +124,13 @@ const extractLatestEpisodes = dom => {
       .getAttribute('href')
       .split('/')
 
+    const previewSrc = element.querySelector('img').getAttribute('src')
+
     return {
       title,
       label: element.querySelector('.Title').text,
       episode: element.querySelector('.Capi').text,
+      image: previewSrc ? `${baseURL}${previewSrc}` : null,
     }
   })
 }
